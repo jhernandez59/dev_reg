@@ -1,0 +1,8 @@
+icono tenedores
+https://www.w3schools.com/icons/tryit.asp?icon=fas_fa-utensils&unicon=f2e7
+
+fas fa-coffee
+https://www.w3schools.com/icons/tryit.asp?icon=fas_fa-coffee&unicon=f0f4
+
+fas fa-mug-hot
+https://www.w3schools.com/icons/tryit.asp?icon=fas_fa-mug-hot&unicon=f7b6

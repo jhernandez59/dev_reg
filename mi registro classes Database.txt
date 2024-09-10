@@ -1,0 +1,12 @@
+/mi_registro
+    /classes
+        Database.php
+        User.php
+    /config
+        config.php
+    /public
+        index.php
+        register.php
+        login.php
+        logout.php
+
