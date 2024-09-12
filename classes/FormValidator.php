@@ -2,6 +2,8 @@
 class FormValidator
 {
   private $name;
+  private $surname;
+  private $phone;
   private $email;
   private $password;
   private $website;
@@ -12,6 +14,8 @@ class FormValidator
   public function __construct($postData)
   {
     $this->name = $this->test_input($postData['name'] ?? '');
+    $this->surname = $this->test_input($postData['surname'] ?? '');
+    $this->phone = $this->test_input($postData['phone'] ?? '');
     $this->email = $this->test_input($postData['email'] ?? '');
     $this->password = $this->test_input($postData['password'] ?? '');
     $this->website = $this->test_input($postData['website'] ?? '');
@@ -22,13 +26,15 @@ class FormValidator
   public function validate()
   {
     $this->validateName();
+    $this->validateSurname();
+    $this->validatePhone();
     $this->validateEmail();
     $this->validatePassword();
     $this->validateWebsite();
     $this->validateGender();
   }
 
-  private function validateName()
+  protected function validateName()
   {
     if (empty($this->name)) {
       $this->errors['name'] = 'Name is required';
@@ -37,7 +43,25 @@ class FormValidator
     }
   }
 
-  private function validateEmail()
+  protected function validateSurname()
+  {
+    if (empty($this->surname)) {
+      $this->errors['surname'] = 'Surname is required';
+    } elseif (!preg_match('/^[a-zA-Z-\' ]*$/', $this->surname)) {
+      $this->errors['surname'] = 'Only letters and white space allowed';
+    }
+  }
+
+  protected function validatePhone()
+  {
+    if (empty($this->phone)) {
+      $this->errors['phone'] = 'Phone is required';
+    } elseif (!preg_match('/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/', $this->phone)) {
+      $this->errors['phone'] = 'Invalid phone format';
+    }
+  }
+
+  protected function validateEmail()
   {
     if (empty($this->email)) {
       $this->errors['email'] = 'Email is required';
@@ -46,16 +70,16 @@ class FormValidator
     }
   }
 
-  private function validatePassword()
+  protected function validatePassword()
   {
     if (empty($this->password)) {
       $this->errors['password'] = 'Password is required';
-    } elseif (strlen($this->password) < 6) {
+    } elseif (strlen($this->password) < 4) {
       $this->errors['password'] = 'Password must be at least 6 characters long';
     }
   }
 
-  private function validateWebsite()
+  protected function validateWebsite()
   {
     if (!empty($this->website) && !preg_match('/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i',
         $this->website)) {
@@ -63,7 +87,7 @@ class FormValidator
     }
   }
 
-  private function validateGender()
+  protected function validateGender()
   {
     if (empty($this->gender)) {
       $this->errors['gender'] = 'Gender is required';
@@ -88,6 +112,16 @@ class FormValidator
     return $this->name;
   }
 
+  public function getSurname()
+  {
+    return $this->surname;
+  }
+
+  public function getPhone()
+  {
+    return $this->phone;
+  }  
+  
   public function getEmail()
   {
     return $this->email;

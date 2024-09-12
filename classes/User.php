@@ -10,10 +10,13 @@ class User {
         $this->db = new Database(); 
     }
 
-    public function register($name, $email, $password) {
+    public function register($name, $surname, $phone, $email, $password) {
         $password = password_hash($password, PASSWORD_BCRYPT);
-        $this->db->query('INSERT INTO users (name, email, password) VALUES (:name, :email, :password)');
+        $this->db->query('INSERT INTO users (name, surname, phone, email, password) 
+            VALUES (:name, :surname, :phone, :email, :password)');
         $this->db->bind(':name', $name);
+        $this->db->bind(':surname', $surname);
+        $this->db->bind(':phone', $phone);
         $this->db->bind(':email', $email);
         $this->db->bind(':password', $password);
         return $this->db->execute();
@@ -32,6 +35,18 @@ class User {
         }
     }
 
+    public function updatePassword($email, $hashed_password) {
+        $db = new Database();
+        $conn = $db->getConnection();
+
+        $sql = "UPDATE users SET password = :password WHERE email = :email";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':password', $hashed_password);
+        $stmt->bindParam(':email', $email);
+
+        $stmt->execute();
+    }
+        
     public function logout() {
         session_unset();
         session_destroy();
