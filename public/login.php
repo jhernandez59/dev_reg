@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>">
         
                 <!-- email -->        
-                <div class="field is-left">
+                <div class="field">
                   <label class="label has-text-left" for="email">Email</label>
                   <div class="control">
                     <input class="input is-medium" type="text" placeholder="Email" 
@@ -74,7 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 
                 <!-- submit -->
                 <div>
-                    <button class="button is-block is-primary is-fullwidth is-medium" type="submit">Entrar</button>
+                    <button class="button is-block is-primary is-fullwidth is-medium" 
+                    type="submit">Entrar</button>
                 </div>
 
                 <br>
