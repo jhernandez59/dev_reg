@@ -47,17 +47,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div>
         Password: <input type="password" name="password" value="<?=$validator ? $validator->getPassword() : '' ?>">
         <span class="error"><?= $errors['password'] ?? '' ?></span>
-        <br><br>
+        <br>
         </div>
         
-        <a href="change_password.php">¿Olvidaste tu contraseña?</a>
+        <br>
+        <a href="change_password.php">Cambiar contraseña</a>
+        <br><br>
 
         <!-- submit -->
         <div>
             <button type="submit">Entrar</button>
         </div>
+        <br>
     </form>
-
+    
 <?php
 if (($_SERVER['REQUEST_METHOD'] == 'POST') && empty($errors)) {
     // input values ok => login
@@ -68,15 +71,23 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && empty($errors)) {
       header('Location: index_tmp.html');
       exit();
     } else {
-      // login failed - email o contraseña no registrados o incorrectos      
-      // registrase 
-      $_SESSION['email'] = $_POST['email'];
-      header('Location: register.php');
-      exit();
+      // login failed
+      $emailInUser = $user->emailExists($_POST['email']);
+      
+      if (!$emailInUser) {
+        echo '<h3>E-mail no registrado</h3>';
+        echo '<a href="register.php">Regístrate</a>';
+        echo '<br><br>';
+      } else {
+        echo '<h3>Contraseña Incorrecta</h3>';
+        echo '<a href="reset_password.php">¿Olvidaste tu contraseña?</a>';
+        echo '<br><br>';
+        echo $_SESSION['user_email'];
+      }            
     }
     
 } else {
-    echo '<h3>Form Errors</h3>';
+    // echo '<h3>Form Errors</h3>';
     echo '<ul>';
     foreach ($errors as $error) {
         echo "<li>$error</li>";

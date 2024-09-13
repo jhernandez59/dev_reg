@@ -35,18 +35,33 @@ class User {
         }
     }
 
-    public function updatePassword($email, $hashed_password) {
-        $db = new Database();
-        $conn = $db->getConnection();
-
-        $sql = "UPDATE users SET password = :password WHERE email = :email";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':password', $hashed_password);
-        $stmt->bindParam(':email', $email);
-
-        $stmt->execute();
+    public function emailExists($email) {
+        $this->db->query('SELECT * FROM users WHERE email = :email');
+        $this->db->bind(':email', $email);
+        $row = $this->db->single();
+        if ($row) {
+            $_SESSION['user_email'] = $row['email'];
+            return true;
+        } else {
+            return false;
+        }
     }
         
+    public function updatePassword($email, $new_password) {
+        // Hashear la nueva contraseña
+        $hashed_password = password_hash($new_password, PASSWORD_BCRYPT);
+        
+        // Preparar la consulta de actualización
+        $this->db->query('UPDATE users SET password = :password WHERE email = :email');
+        $this->db->bind(':password', $hashed_password);
+        $this->db->bind(':email', $email);
+        
+        // Ejecutar la consulta
+        return $this->db->execute();
+    }
+    
+
+
     public function logout() {
         session_unset();
         session_destroy();

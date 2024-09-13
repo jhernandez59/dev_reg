@@ -6,6 +6,7 @@ class FormValidator
   private $phone;
   private $email;
   private $password;
+  private $confirm_password;
   private $website;
   private $comment;
   private $gender;
@@ -18,6 +19,7 @@ class FormValidator
     $this->phone = $this->test_input($postData['phone'] ?? '');
     $this->email = $this->test_input($postData['email'] ?? '');
     $this->password = $this->test_input($postData['password'] ?? '');
+    $this->confirm_password = $this->test_input($postData['confirm_password'] ?? '');
     $this->website = $this->test_input($postData['website'] ?? '');
     $this->comment = $this->test_input($postData['comment'] ?? '');
     $this->gender = $this->test_input($postData['gender'] ?? '');
@@ -30,6 +32,7 @@ class FormValidator
     $this->validatePhone();
     $this->validateEmail();
     $this->validatePassword();
+    $this->validateConfirmPassword();
     $this->validateWebsite();
     $this->validateGender();
   }
@@ -76,6 +79,15 @@ class FormValidator
       $this->errors['password'] = 'Password is required';
     } elseif (strlen($this->password) < 4) {
       $this->errors['password'] = 'Password must be at least 6 characters long';
+    }
+  }
+
+  protected function validateConfirmPassword()
+  {
+    if (empty($this->confirm_password)) {
+      $this->errors['confirm_password'] = 'Confirm Password is required';
+    } elseif (strlen($this->confirm_password) < 4) {
+      $this->errors['confirm_password'] = 'Confirm Password must be at least 6 characters long';
     }
   }
 
@@ -145,6 +157,11 @@ class FormValidator
   public function getPassword()
   {
     return $this->password;
+  }
+
+  public function getConfirmPassword()
+  {
+    return $this->confirm_password;
   }
 }
 
