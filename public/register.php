@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 
 require_once '../config/config.php';
@@ -18,7 +19,6 @@ class RegisterValidator extends FormValidator {
 
 $validator = null;
 $errors = [];
-$email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $validator = new RegisterValidator($_POST);
@@ -106,17 +106,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <div class="column left">
               <h1 class="title is-1">Super Cool Website</h1>
               <h2 class="subtitle colored is-4">Lorem ipsum dolor sit amet.</h2>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis ex deleniti aliquam tempora libero excepturi vero soluta odio optio sed.</p>
+              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Corporis ex deleniti aliquam tempora libero excepturi vero soluta odio optio sed.</p>
               <hr>
               <h1 class="title is-4">Regístrate hoy</h1>
               <p class="description">Lorem ipsum dolor, sit amet consectetur adipisicing elit</p>
               <hr>
-              <p>¿Ya tienes una cuenta? <a href="login.php">Entra</a></p>
+              <p>¿Ya tienes una cuenta? <a href="login.php">Entra aquí</a></p>
           </div>
 
-          <div class="column right has-text-centered">
-              
-              
+          <div class="column right has-text-centered">              
               <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>">
                   
                   <!-- Name -->
@@ -176,9 +175,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     type="submit">Registrar <i class="fa fa-user-plus"></i></button>
                 </div>
 
-                
-                
-        
             </form>
 
           </div>
@@ -194,15 +190,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </div>
     </div>
   </section>
-
 <?php
 if (($_SERVER['REQUEST_METHOD'] == 'POST') && empty($errors)) {  
-    
     $user = new User();
-    $user->register($_POST['name'], $_POST['surname'], $_POST['phone'], $email, $_POST['password']);
+    $user->register($_POST['name'], $_POST['surname'], $_POST['phone'], $_POST['email'], $_POST['password']);
     
-    header('Location: index_tmp.html');
+    $_SESSION['user_name'] = $_POST['name'];
+    $_SESSION['user_surname'] = $_POST['surname'];
+    $_SESSION['user_email'] = $_POST['email'];
+
+    header('Location: cover.html');
     exit();
+    ob_end_flush();
 } else {
     // echo '<h3>Form Errors</h3>';
     // echo '<ul>';
