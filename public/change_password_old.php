@@ -30,71 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cambiar Contraseña</title>
-  <link 
-      rel="stylesheet" 
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      />    
   <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
       />
 </head>
 <body>
-<nav class="navbar topNav">
-    <div class="container">
-      <!-- Logo -->
-      <div class="navbar-brand">
-        <a class="navbar-item" href="../">
-          <img src="../assets/restaurant-icon-png-4890_white.png" height="28">
-        </a>
-        <div class="navbar-burger burger" data-target="topNav">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-      <!-- Menu -->
-      <div id="topNav" class="navbar-menu">
-        <div class="navbar-start">          
-          <a class="navbar-item" href="cover.html">Home</a>
-          <a class="navbar-item" href="landing.html">Landing</a>
-          <a class="navbar-item" href="blog.html">Blog</a>
-          <a class="navbar-item" href="instaAlbum.html">Album</a>
-          <a class="navbar-item" href="kanban[search].html">Kanban</a>
-          <a class="navbar-item" href="search.html">Search</a>
-          <a class="navbar-item" href="tabs.html">Tabs</a>
-        </div>
-        <!-- Menu Login -->
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="field is-grouped">
-              <p class="control">
-                <a class="button is-small">
-                  <span class="icon">
-                    <i class="fa fa-user-plus"></i>
-                  </span>
-                  <span>
-                    Registrar
-                  </span>
-                </a>
-              </p>
-              <p class="control">
-                <a class="button is-small is-info is-outlined">
-                  <span class="icon">
-                    <i class="fa fa-user"></i>
-                  </span>
-                  <span>Entrar</span>
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-        <!-- Fin Menu Login -->
-      </div>
-    </div>
-  </nav>
-  <!-- Fin Nav -->
-
   <section class="container">
     <div class="columns is-multiline">
       <div class="column is-8 is-offset-2">
@@ -103,12 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <div class="column left">
               <h1 class="title is-1">Super Cool Website</h1>
               <h2 class="subtitle colored is-4">Lorem ipsum dolor sit amet.</h2>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                Corporis ex deleniti aliquam tempora libero excepturi vero soluta odio optio sed.</p>
+              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis ex deleniti aliquam tempora libero excepturi vero soluta odio optio sed.</p>
           </div>
 
           <div class="column right has-text-centered">
-            <h1 class="title is-4">¿Olvidaste tu Contraseña?</h1>
+            <h1 class="title is-4">Regístrate hoy</h1>
             <p class="description">Lorem ipsum dolor, sit amet consectetur adipisicing elit</p>
 
             <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>">
@@ -146,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <!-- submit -->
                 <div>
                     <button class="button is-block is-primary is-fullwidth is-medium" 
-                    type="submit">Cambiar Contraseña <i class="fa fa-key"></i></button>
+                    type="submit">Cambiar Contraseña</button>
                 </div>
 
                 <br>

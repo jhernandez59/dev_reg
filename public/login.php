@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <i class="fa fa-user-plus"></i>
                   </span>
                   <span>
-                    Register
+                    Registrar
                   </span>
                 </a>
               </p>
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                   <span class="icon">
                     <i class="fa fa-user"></i>
                   </span>
-                  <span>Login</span>
+                  <span>Entrar</span>
                 </a>
               </p>
             </div>
@@ -94,23 +94,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   </nav>
   <!-- Fin Nav -->
 
-  <section class="container">
-    <div class="columns is-multiline">
-      <div class="column is-8 is-offset-2">
-        <!-- columnas arriba  -->
-        <div class="columns">
-          <div class="column left">
-              <h1 class="title is-1">Super Cool Website</h1>
-              <h2 class="subtitle colored is-4">Lorem ipsum dolor sit amet.</h2>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis ex deleniti aliquam tempora libero excepturi vero soluta odio optio sed.</p>
-          </div>
+  <section class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <div class="column is-4 is-offset-4">
 
-          <div class="column right has-text-centered">
-            <h1 class="title is-4">Entra hoy</h1>
-            <p class="description">Lorem ipsum dolor, sit amet consectetur adipisicing elit</p>
-
+          <h1 class="title is-4">Entrada</h1>
+          <hr>
+          <p class="subtitle">Inicia sesión para continuar</p>
+          <div class="box">
             <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>">
-        
                 <!-- email -->        
                 <div class="field">
                   <label class="label has-text-left" for="email">Email</label>
@@ -134,31 +127,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <!-- submit -->
                 <div>
                     <button class="button is-block is-primary is-fullwidth is-medium" 
-                    type="submit">Entrar</button>
+                    type="submit">Entrar <i class="fa fa-sign-in" aria-hidden="true"></i></button>
                 </div>
-
-                <br>
-                <a href="change_password.php">Cambiar contraseña</a>
-                <br><br>
-
-                <br>
             </form>
-
           </div>
+          <nav class="level">
+            <div class="level-item has-text-centered">
+              <div>
+                <a href="change_password.php">¿Cambiar contraseña?</a>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <a href="register.php">Registrarte</a>
+              </div>
+            </div>
+          </nav>
         </div>
-      </div>
-      <!-- Fin columnas arriba -->
-
-      <div class="column is-8 is-offset-2">
-        <!-- columnas abajo -->
-        <div class="columns">
-
-        </div>
+        
       </div>
     </div>
   </section>
-
-
     
 <?php
 if (($_SERVER['REQUEST_METHOD'] == 'POST') && empty($errors)) {
