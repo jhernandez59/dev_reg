@@ -129,7 +129,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                   <div class="control">
                     <input class="input is-medium" type="password" placeholder="Contraseña"
                     name="password" value="<?=$validator ? $validator->getPassword() : '' ?>">
-                  <p class="help is-danger has-text-left"><?= $errors['password'] ?? '' ?></p>
+                    <p class="help <?= empty($errors) ? 'is-info' : 'is-danger' ?> has-text-left">
+                      <?= $errors['password'] ?? 'El password debe tener al menos 6 caracteres' ?></p>
                   </div>
                 </div>
       
@@ -139,7 +140,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                   <div class="control">
                     <input class="input is-medium" type="password" placeholder="Confirmar Nueva Contraseña" 
                     name="confirm_password" value="<?=$validator ? $validator->getConfirmPassword() : '' ?>">
-                    <p class="help is-danger has-text-left"><?= $errors['confirm_password'] ?? '' ?></p>
+                    <p class="help <?= empty($errors) ? 'is-info' : 'is-danger' ?> has-text-left">
+                      <?= $errors['confirm_password'] ?? 'El password debe tener al menos 6 caracteres' ?></p>
                   </div>
                 </div>
                 

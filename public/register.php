@@ -165,8 +165,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="control">
                     <input class="input is-medium" type="password" placeholder="Contraseña"
                     name="password" value="<?=$validator ? $validator->getPassword() : '' ?>">
-                    <p class="help is-danger has-text-left"><?= $errors['password'] ?? '' ?></p>
-                    <p class="help is-danger has-text-left">El password debe tener al menos 6 caracteres</p>
+                    <p class="help <?= empty($errors) ? 'is-info' : 'is-danger' ?> has-text-left">
+                    <?= $errors['password'] ?? 'El password debe tener al menos 6 caracteres' ?></p>
                     </div>
                   </div>
                 

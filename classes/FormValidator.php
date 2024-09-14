@@ -40,54 +40,54 @@ class FormValidator
   protected function validateName()
   {
     if (empty($this->name)) {
-      $this->errors['name'] = 'Name is required';
+      $this->errors['name'] = 'Se requiere Nombre';
     } elseif (!preg_match('/^[a-zA-Z-\' ]*$/', $this->name)) {
-      $this->errors['name'] = 'Only letters and white space allowed';
+      $this->errors['name'] = 'Solo se permiten letras y espacios en blanco';
     }
   }
 
   protected function validateSurname()
   {
     if (empty($this->surname)) {
-      $this->errors['surname'] = 'Surname is required';
+      $this->errors['surname'] = 'Se requiere Apellido';
     } elseif (!preg_match('/^[a-zA-Z-\' ]*$/', $this->surname)) {
-      $this->errors['surname'] = 'Only letters and white space allowed';
+      $this->errors['surname'] = 'Solo se permiten letras y espacios en blanco';
     }
   }
 
   protected function validatePhone()
   {
     if (empty($this->phone)) {
-      $this->errors['phone'] = 'Phone is required';
+      $this->errors['phone'] = 'Se requiere Teléfono';
     } elseif (!preg_match('/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/', $this->phone)) {
-      $this->errors['phone'] = 'Invalid phone format';
+      $this->errors['phone'] = 'Formato de teléfono no válido';
     }
   }
 
   protected function validateEmail()
   {
     if (empty($this->email)) {
-      $this->errors['email'] = 'Email is required';
+      $this->errors['email'] = 'Se requiere Email';
     } elseif (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-      $this->errors['email'] = 'Invalid email format';
+      $this->errors['email'] = 'Formato de Email no válido';
     }
   }
 
   protected function validatePassword()
   {
     if (empty($this->password)) {
-      $this->errors['password'] = 'Password is required';
+      $this->errors['password'] = 'Se requiere Contraseña';
     } elseif (strlen($this->password) < 4) {
-      $this->errors['password'] = 'Password must be at least 6 characters long';
+      $this->errors['password'] = 'La contraseña debe tener al menos 6 caracteres';
     }
   }
 
   protected function validateConfirmPassword()
   {
     if (empty($this->confirm_password)) {
-      $this->errors['confirm_password'] = 'Confirm Password is required';
+      $this->errors['confirm_password'] = 'Se requiere Confirmación de la Contraseña';
     } elseif (strlen($this->confirm_password) < 4) {
-      $this->errors['confirm_password'] = 'Confirm Password must be at least 6 characters long';
+      $this->errors['confirm_password'] = 'La confirmación de la contraseña debe tener al menos 6 caracteres';
     }
   }
 
@@ -95,14 +95,14 @@ class FormValidator
   {
     if (!empty($this->website) && !preg_match('/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i',
         $this->website)) {
-      $this->errors['website'] = 'Invalid URL';
+      $this->errors['website'] = 'URL Invalido';
     }
   }
 
   protected function validateGender()
   {
     if (empty($this->gender)) {
-      $this->errors['gender'] = 'Gender is required';
+      $this->errors['gender'] = 'Se requiere Genero';
     }
   }
 
