@@ -1,35 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link 
+      rel="stylesheet" 
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
     />
-  </head>
-  <body>
-    <div class="columns is-vcentered is-mobile" >
-      <div class="column is-narrow" >
-        <div class="box ml-3">
-          <img src="../assets/restaurant-icon-png-4890_white.png" style="max-height: 65px"  />
-        </div>  
-          
-      </div>
-      <div class="column is-hidden-mobile" >
-        <div class="box py-5">
-          <h1 class="title">Consigue Restaurante</h1>
-        <p class="subtitle">Encuentra y <strong>reserva</strong>!</p>
+</head>
+<body>
+  <nav class="navbar topNav">
+    <div class="container">
+      <!-- Logo -->
+      <div class="navbar-brand">
+        <a class="navbar-item" href="../">
+          <img src="../assets/restaurant-icon-png-4890_white.png" height="28">
+        </a>
+        <div class="navbar-burger burger" data-target="topNav">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
       </div>
-      <div class="column is-narrow" >
-        <div class="box mr-3 py-5" >
-          <a class="button " href="register.php"><strong>Registro</strong></a>
-          <a class="button " href="login.php"> Log in </a>
+      <!-- Menu -->
+      <div id="topNav" class="navbar-menu">
+        <div class="navbar-start">          
+          <a class="navbar-item" href="cover.html">Home</a>
+          <a class="navbar-item" href="landing.html">Landing</a>
+          <a class="navbar-item" href="blog.html">Blog</a>
+          <a class="navbar-item" href="instaAlbum.html">Album</a>
+          <a class="navbar-item" href="kanban[search].html">Kanban</a>
+          <a class="navbar-item" href="search.html">Search</a>
+          <a class="navbar-item" href="tabs.html">Tabs</a>
         </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="field is-grouped">
+              <p class="control">
+                <a class="button is-small">
+                  <span class="icon">
+                    <i class="fa fa-user-plus"></i>
+                  </span>
+                  <span>
+                    Register
+                  </span>
+                </a>
+              </p>
+              <p class="control">
+                <a class="button is-small is-info is-outlined">
+                  <span class="icon">
+                    <i class="fa fa-user"></i>
+                  </span>
+                  <span>Login</span>
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
+  </nav>
 
-  </body>
+
+</body>
 </html>
