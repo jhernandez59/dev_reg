@@ -38,9 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       />    
     <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
-        />
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+      />
 </head>
 <body>
 <nav class="navbar topNav">
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </a>
               </p>
               <p class="control">
-                <a class="button is-small is-info is-outlined">
+                <a class="button is-small is-info is-outlined" href="login.php">
                   <span class="icon">
                     <i class="fa fa-user"></i>
                   </span>

@@ -41,7 +41,7 @@ class FormValidator
   {
     if (empty($this->name)) {
       $this->errors['name'] = 'Se requiere Nombre';
-    } elseif (!preg_match('/^[a-zA-Z-\' ]*$/', $this->name)) {
+    } elseif (!preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\' ]*$/u', $this->name)) {
       $this->errors['name'] = 'Solo se permiten letras y espacios en blanco';
     }
   }
@@ -50,7 +50,7 @@ class FormValidator
   {
     if (empty($this->surname)) {
       $this->errors['surname'] = 'Se requiere Apellido';
-    } elseif (!preg_match('/^[a-zA-Z-\' ]*$/', $this->surname)) {
+    } elseif (!preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\' ]*$/u', $this->name)) {
       $this->errors['surname'] = 'Solo se permiten letras y espacios en blanco';
     }
   }
@@ -110,7 +110,8 @@ class FormValidator
   {
     $data = trim($data);
     $data = stripslashes($data);
-    $data = htmlspecialchars($data);
+    // $data = htmlspecialchars($data); para español
+    $data = htmlspecialchars($data, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     return $data;
   }
 

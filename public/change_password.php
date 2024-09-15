@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       />
 </head>
 <body>
-<nav class="navbar topNav">
+  <nav class="navbar topNav">
     <div class="container">
       <!-- Logo -->
       <div class="navbar-brand">
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <div class="navbar-item">
             <div class="field is-grouped">
               <p class="control">
-                <a class="button is-small">
+                <a class="button is-small" href="register.php">
                   <span class="icon">
                     <i class="fa fa-user-plus"></i>
                   </span>
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </a>
               </p>
               <p class="control">
-                <a class="button is-small is-info is-outlined">
+                <a class="button is-small is-info is-outlined" href="login.php">
                   <span class="icon">
                     <i class="fa fa-user"></i>
                   </span>
@@ -100,14 +100,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <div class="column is-8 is-offset-2">
         <!-- columnas arriba  -->
         <div class="columns">
-          <div class="column left">
-              <h1 class="title is-1">Super Cool Website</h1>
-              <h2 class="subtitle colored is-4">Lorem ipsum dolor sit amet.</h2>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                Corporis ex deleniti aliquam tempora libero excepturi vero soluta odio optio sed.</p>
-          </div>
+          <!-- columna izquierda -->
 
-          <div class="column right has-text-centered">
+          <div class="column left has-text-centered">
             <h1 class="title is-4">¿Olvidaste tu Contraseña?</h1>
             <p class="description">Lorem ipsum dolor, sit amet consectetur adipisicing elit</p>
 
@@ -150,13 +145,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <button class="button is-block is-primary is-fullwidth is-medium" 
                     type="submit">Cambiar Contraseña <i class="fa fa-key"></i></button>
                 </div>
-
-                <br>
-                ¿Ya tienes una cuenta? <a href="login.php">Entra</a>
-                <br>
             </form>
-
+            <br>
+<?php
+if (($_SERVER['REQUEST_METHOD'] == 'POST') && empty($errors)) { 
+    $new_password = $_POST['password'];
+    $confirm_new_password = $_POST['confirm_password'];
+    
+    if ($new_password === $confirm_new_password) {
+        $user = new User();
+        $emailInUser = $user->emailExists($_POST['email']);
+        if ($emailInUser) {
+          // actualizar contraseña
+          if($user->updatePassword($_POST['email'], $new_password)) {
+              echo "<p>Contraseña cambiada <a href='login.php'>Iniciar Sesión</a></p>";
+          } else {
+              echo "<p>No se pudo cambiar la contraseña </p>";
+          }
+        } else {
+            echo "<p>Usuario no registrado <a href='register.php'>Regístrate aquí</a></p>";
+        }
+    } else {
+      echo "<p>Las contraseñas no coinciden </p>";  
+    }  
+  }
+?>
           </div>
+
+          <!-- fin columna izquierda -->
+
+          <!-- columna derecha -->
+          <div class="column right">
+              <h1 class="title is-1">Super Cool Website</h1>
+              <h2 class="subtitle colored is-4">Lorem ipsum dolor sit amet.</h2>
+              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Corporis ex deleniti aliquam tempora libero excepturi vero soluta odio optio sed.</p>
+          </div>
+          <!-- Fin columna derecha -->
         </div>
       </div>
       <!-- Fin columnas arriba -->
@@ -170,43 +195,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
   </section>
     
-<?php
-if (($_SERVER['REQUEST_METHOD'] == 'POST') && empty($errors)) { 
-    $new_password = $_POST['password'];
-    $confirm_new_password = $_POST['confirm_password'];
-    
-    if ($new_password === $confirm_new_password) {
-        $user = new User();
-        $emailInUser = $user->emailExists($_POST['email']);
-        if ($emailInUser) {
-          // actualizar contraseña
-          if($user->updatePassword($_POST['email'], $new_password)) {
-              echo '<h3>Contraseña cambiada</h3>';
-              echo '<a href="login.php">Iniciar Sesión</a>';
-              echo '<br><br>';
-          } else {
-              echo '<h3>No se pudo cambiar la contraseña</h3>';
-              echo '<a href="reset_password.php">Volver</a>';
-              echo '<br><br>';
-          }
-        } else {
-            echo '<h3>Usuario no registrado</h3>';
-            echo '<a href="register.php">Regístrate</a>';
-            echo '<br><br>';
-        }
-    } else {
-      echo '<h3>Las contraseñas no coinciden</h3>';
-      echo '<a href="change_password.php">Volver</a>';  
-    }  
-  } else {
-      echo '<ul>';
-      foreach ($errors as $error) {
-          echo "<li>$error</li>";
-      }
-      echo '</ul>';
-  }
-
-?>
-
 </body>
 </html>

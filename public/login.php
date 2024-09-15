@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 
 require_once '../config/config.php';
@@ -28,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Login</title>
   <link 
       rel="stylesheet" 
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -68,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <div class="navbar-item">
             <div class="field is-grouped">
               <p class="control">
-                <a class="button is-small">
+                <a class="button is-small" href="register.php">
                   <span class="icon">
                     <i class="fa fa-user-plus"></i>
                   </span>
@@ -144,6 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               </div>
             </div>
           </nav>
+
         </div>
         
       </div>
@@ -157,8 +159,14 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && empty($errors)) {
     $loggedInUser = $user->login($_POST['email'], $_POST['password']);
   
     if ($loggedInUser) {
-      header('Location: index_tmp.html');
+
+      $_SESSION['user_name'] = $_POST['name'];
+      $_SESSION['user_surname'] = $_POST['surname'];
+      $_SESSION['user_email'] = $_POST['email'];
+
+      header('Location: cover.html');
       exit();
+      ob_end_flush();
     } else {
       // login failed
       $emailInUser = $user->emailExists($_POST['email']);
@@ -171,7 +179,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && empty($errors)) {
         echo '<h3>Contraseña Incorrecta</h3>';
         echo '<a href="reset_password.php">¿Olvidaste tu contraseña?</a>';
         echo '<br><br>';
-        echo $_SESSION['user_email'];
+        
       }            
     }
     
